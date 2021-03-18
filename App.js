@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { Button, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, FlatList, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
 
 export default function App() {
   const [inputText, setInputText] = useState('');
@@ -12,7 +12,7 @@ export default function App() {
 
   const addUpdatedText = () => {
     // console.log("text updated!");
-    setTextList((enteredText) => [...enteredText, inputText])
+    setTextList((enteredText) => [...enteredText, {key: Math.random().toString(), value: inputText}])
   }
 
   return (
@@ -27,9 +27,10 @@ export default function App() {
 
         <Button title="Add" onPress={addUpdatedText} color="dodgerblue"/>
       </View>
-      <ScrollView>
+      <FlatList data={textList} renderItem={itemData => (<View style={styles.texts}><Text>{itemData.item.value}</Text></View>)} />
+      {/* <ScrollView>
         {textList.map(text => <View key={text} style={styles.texts}><Text>{text}</Text></View>)}
-      </ScrollView>
+      </ScrollView> */}
     </View>
   );
 }
