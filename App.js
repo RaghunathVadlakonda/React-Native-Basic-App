@@ -12,13 +12,19 @@ export default function App() {
     setTextList((currentList) => [...currentList, {id: Math.random().toString(), value: titleText}]);
   };
 
+  const removeSeletedText = textId => {
+    setTextList(currentList => {
+      return currentList.filter((text) => text.id !== textId);
+    });
+  };
+
   return (
     <View>
       <InputTextField onAddText={addUpdatedText}/>
       <FlatList 
       keyExtractor={(item, index) => item.id}
       data={textList} 
-      renderItem={itemData => (<ListAllText title={itemData.item.value}/>)} />
+      renderItem={itemData => (<ListAllText id={itemData.item.id} onDelete={removeSeletedText} title={itemData.item.value}/>)} />
     </View>
   );
 }
