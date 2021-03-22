@@ -4,9 +4,9 @@ import { Button, FlatList, SafeAreaView, ScrollView, StyleSheet, Text, TextInput
 const ListAllText = props => {
     
     return (
-        <TouchableOpacity onPress={props.onDelete.bind(this, props.id)}>
-        <View style={styles.texts}><Text>{props.title}</Text></View>
-        </TouchableOpacity>
+            <TouchableOpacity onPress={props.onDelete.bind(this, props.id)}>
+            <View style={styles.texts}><Text>{props.title}</Text></View>
+            </TouchableOpacity>
     )
 }
 

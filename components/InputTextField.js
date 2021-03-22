@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Button, FlatList, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
+import { Modal, Button, FlatList, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
 
 const InputTextField = props => {
     const [inputText, setInputText] = useState('');
@@ -9,16 +9,18 @@ const InputTextField = props => {
       }
 
     return (
-        <View style={styles.container}>
-        <TextInput 
-         placeholder="Please Enter Your Text" 
-         style={styles.inputField}
-         onChangeText={updateInputText}
-         value={inputText}
-          />
+        <Modal visible={props.visible} animationType="slide">
+            <View style={styles.container}>
+                <TextInput 
+                placeholder="Please Enter Your Text" 
+                style={styles.inputField}
+                onChangeText={updateInputText}
+                value={inputText}
+                />
 
-        <Button title="Add" onPress={props.onAddText.bind(this, inputText)} color="dodgerblue"/>
-      </View>
+                <Button title="Add" onPress={props.onAddText.bind(this, inputText)} color="dodgerblue"/>
+            </View>
+        </Modal>
     )
 }
 
